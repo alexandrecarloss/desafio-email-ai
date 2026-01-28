@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Email Classifier | Finance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-slate-50 font-sans min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm py-6 sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
+        <div class="flex items-center gap-2">
+          <div class="bg-indigo-600 p-2 rounded-lg">
+            <i class="fas fa-robot text-white text-xl"></i>
+          </div>
+          <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight">
+            SmartMail <span class="text-indigo-600">AI</span>
+          </h1>
+        </div>
+        <div class="flex items-center gap-4">
+          <span
+            class="hidden sm:inline text-xs font-bold text-slate-400 uppercase tracking-widest border-r pr-4"
+            >Finance Engine v1.0</span
+          >
+          <div
+            class="flex items-center gap-2 text-green-500 text-sm font-medium"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
+              ></span>
+            </span>
+            IA Online
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      id="toastContainer"
+      class="fixed top-5 right-5 z-[100] flex flex-col gap-3"
+    ></div>
+    <main class="container mx-auto px-4 py-8 flex-grow max-w-6xl">
+      <section class="mb-10 text-center md:text-left">
+        <h2 class="text-3xl font-bold text-slate-800 mb-2">
+          Automação de Triagem Financeira
+        </h2>
+        <p class="text-slate-500 max-w-2xl text-lg">
+          Utilize nossa inteligência artificial para classificar requisições e
+          gerar respostas instantâneas, liberando sua equipe para tarefas de
+          alto valor.
+        </p>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-6">
+          <section
+            class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100"
+          >
+            <h3
+              class="text-xl font-bold mb-6 text-slate-700 flex items-center gap-3"
+            >
+              <i class="fas fa-paper-plane text-indigo-500"></i> Analisar Novo
+              E-mail
+            </h3>
+
+            <form id="emailForm" class="space-y-6">
+              <div class="group">
+                <label
+                  class="block text-sm font-semibold text-slate-600 mb-2 group-focus-within:text-indigo-600 transition-colors"
+                  >Conteúdo da Mensagem</label
+                >
+                <textarea
+                  id="emailText"
+                  rows="8"
+                  class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all text-slate-700 placeholder:text-slate-300"
+                  placeholder="Cole aqui o corpo do e-mail recebido..."
+                ></textarea>
+              </div>
+
+              <div
+                id="dropZone"
+                class="p-6 border-2 border-dashed border-slate-200 rounded-2xl hover:bg-slate-50 transition-all group relative"
+              >
+                <label class="flex flex-col items-center cursor-pointer">
+                  <i
+                    class="fas fa-cloud-upload-alt text-3xl text-slate-300 group-hover:text-indigo-400 transition-colors mb-2"
+                  ></i>
+                  <div id="fileStatusContainer" class="text-center">
+                    <span
+                      id="fileNameDisplay"
+                      class="text-sm font-medium text-slate-500"
+                      >Ou arraste um arquivo .txt ou .pdf aqui</span
+                    >
+                  </div>
+                  <input
+                    type="file"
+                    id="emailFile"
+                    accept=".txt, .pdf"
+                    class="hidden"
+                  />
+                </label>
+                <button
+                  type="button"
+                  id="btnRemoveFile"
+                  class="hidden absolute top-2 right-2 bg-red-100 text-red-600 hover:bg-red-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                id="btnSubmit"
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-4 px-8 rounded-2xl transition-all shadow-lg shadow-indigo-200 flex items-center justify-center gap-3 transform hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span>PROCESSAR AGORA</span>
+                <i class="fas fa-bolt"></i>
+              </button>
+            </form>
+          </section>
+        </div>
+
+        <div class="space-y-6">
+          <section
+            id="resultCard"
+            class="bg-white p-8 rounded-3xl shadow-xl border-2 border-indigo-50 hidden animate-in fade-in slide-in-from-bottom-4 duration-500"
+          >
+            <div class="flex justify-between items-start mb-6">
+              <h3 class="text-lg font-bold text-slate-800">Análise da IA</h3>
+              <span
+                id="labelCategoria"
+                class="text-[10px] font-black tracking-tighter"
+              ></span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <div class="bg-slate-100 px-3 py-1 rounded-lg">
+                <span
+                  class="text-[9px] uppercase font-bold text-slate-400 block"
+                  >Estágio</span
+                >
+                <span id="badgeEstagio" class="text-xs font-bold text-slate-700"
+                  >-</span
+                >
+              </div>
+              <div class="bg-indigo-50 px-3 py-1 rounded-lg">
+                <span
+                  class="text-[9px] uppercase font-bold text-indigo-400 block"
+                  >Ação do Sistema</span
+                >
+                <span id="badgeAcao" class="text-xs font-bold text-indigo-700"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div
+                class="bg-slate-50 p-5 rounded-2xl border border-slate-100 relative group"
+              >
+                <label
+                  class="text-[10px] font-bold text-slate-400 uppercase mb-2 block"
+                  >Sugestão de Resposta</label
+                >
+                <p
+                  id="respostaSugestao"
+                  class="text-slate-700 leading-relaxed italic"
+                ></p>
+              </div>
+
+              <button
+                onclick="copyResponse()"
+                class="w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
+              >
+                <i class="far fa-copy"></i> Copiar para o Dashboard
+              </button>
+            </div>
+          </section>
+
+          <div
+            id="loading"
+            class="hidden bg-white p-12 rounded-3xl border border-slate-100 shadow-sm text-center"
+          >
+            <div
+              class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-600 border-t-transparent mb-4"
+            ></div>
+            <p class="text-slate-500 font-bold animate-pulse">
+              Consultando Redes Neurais...
+            </p>
+          </div>
+
+          <section
+            class="bg-indigo-900 text-white p-8 rounded-3xl shadow-xl shadow-indigo-200"
+          >
+            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+              <i class="fas fa-lightbulb text-amber-400"></i> Como funciona?
+            </h3>
+            <ul class="space-y-4 text-indigo-100 text-sm">
+              <li class="flex gap-3">
+                <span
+                  class="bg-indigo-800 h-5 w-5 rounded-full flex items-center justify-center text-[10px] shrink-0"
+                  >1</span
+                >
+                Nossa IA lê o contexto semântico do texto enviado.
+              </li>
+              <li class="flex gap-3">
+                <span
+                  class="bg-indigo-800 h-5 w-5 rounded-full flex items-center justify-center text-[10px] shrink-0"
+                  >2</span
+                >
+                Emails de suporte ou pedidos são marcados como
+                <b>Produtivos</b>.
+              </li>
+              <li class="flex gap-3">
+                <span
+                  class="bg-indigo-800 h-5 w-5 rounded-full flex items-center justify-center text-[10px] shrink-0"
+                  >3</span
+                >
+                A IA sugere uma resposta padrão baseada na categoria.
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-100 py-8 border-t border-slate-200">
+      <div class="container mx-auto px-4 text-center text-slate-400 text-xs">
+        &copy; 2026 SmartMail AI Engine - Sistema de Apoio ao Setor Financeiro
+      </div>
+    </footer>
+
+    <script>
+      const form = document.getElementById("emailForm");
+      const btnSubmit = document.getElementById("btnSubmit");
+      const loading = document.getElementById("loading");
+      const resultCard = document.getElementById("resultCard");
+      const fileInput = document.getElementById("emailFile");
+      const emailText = document.getElementById("emailText");
+      const fileNameDisplay = document.getElementById("fileNameDisplay");
+      const dropZone = document.getElementById("dropZone");
+      const btnRemoveFile = document.getElementById("btnRemoveFile");
+
+      function showToast(message, type = "success") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+
+        const bgColor =
+          type === "success"
+            ? "bg-green-600"
+            : type === "error"
+            ? "bg-red-600"
+            : "bg-amber-500";
+        const icon =
+          type === "success" ? "fa-check-circle" : "fa-exclamation-triangle";
+
+        toast.className = `${bgColor} text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in slide-in-from-right-full duration-300 min-w-[300px]`;
+        toast.innerHTML = `
+        <i class="fas ${icon}"></i>
+        <span class="font-medium">${message}</span>
+    `;
+
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.classList.add(
+            "animate-out",
+            "fade-out",
+            "slide-out-to-right-full",
+          );
+          setTimeout(() => toast.remove(), 500);
+        }, 4000);
+      }
+
+      emailText.addEventListener("input", () => {
+        if (emailText.value.trim() !== "") {
+          if (fileInput.files.length > 0) clearFile();
+          dropZone.classList.add("opacity-40", "pointer-events-none");
+        } else {
+          dropZone.classList.remove("opacity-40", "pointer-events-none");
+        }
+      });
+
+      function updateFileName(file) {
+        if (file) {
+          emailText.value = "";
+          emailText.disabled = true;
+          emailText.classList.add("bg-slate-200", "cursor-not-allowed");
+
+          fileNameDisplay.innerText = `Selecionado: ${file.name}`;
+          fileNameDisplay.classList.add("text-indigo-600", "font-bold");
+          btnRemoveFile.classList.remove("hidden");
+          dropZone.classList.add("border-indigo-400", "bg-indigo-50");
+        }
+      }
+
+      function clearFile() {
+        fileInput.value = "";
+        emailText.disabled = false;
+        emailText.classList.remove("bg-slate-200", "cursor-not-allowed");
+
+        fileNameDisplay.innerText = "Ou arraste um arquivo .txt ou .pdf aqui";
+        fileNameDisplay.classList.remove("text-indigo-600", "font-bold");
+        btnRemoveFile.classList.add("hidden");
+        dropZone.classList.remove(
+          "border-indigo-400",
+          "bg-indigo-50",
+          "opacity-40",
+          "pointer-events-none",
+        );
+      }
+
+      btnRemoveFile.onclick = (e) => {
+        e.preventDefault();
+        clearFile();
+      };
+
+      fileInput.onchange = () => updateFileName(fileInput.files[0]);
+
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          if (!emailText.disabled && emailText.value === "") {
+            dropZone.classList.add("bg-indigo-50", "border-indigo-500");
+          }
+        });
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove("bg-indigo-100", "border-indigo-500");
+        });
+      });
+
+      dropZone.addEventListener("drop", (e) => {
+        const dt = e.dataTransfer;
+        const file = dt.files[0];
+        if (emailText.value === "") {
+          fileInput.files = dt.files;
+          updateFileName(file);
+        }
+      });
+
+      form.onsubmit = async (e) => {
+        e.preventDefault();
+
+        const text = emailText.value;
+        const file = fileInput.files[0];
+
+        if (!text && !file) {
+          showToast("Por favor, forneça um texto ou um arquivo.", "error");
+          return;
+        }
+
+        btnSubmit.disabled = true;
+        btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+        btnSubmit.querySelector("span").innerText = "PROCESSANDO...";
+
+        btnSubmit.classList.remove("bg-amber-500", "hover:bg-amber-600");
+        btnSubmit.classList.add("bg-indigo-600");
+
+        loading.classList.remove("hidden");
+        resultCard.classList.add("hidden");
+
+        const formData = new FormData();
+        if (file) formData.append("arquivo", file);
+        if (text) formData.append("texto", text);
+
+        try {
+          const response = await fetch("/processar-email", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.status === 429) {
+            showToast(
+              "IA Sobrecargada! Aguarde 1 minuto e tente novamente.",
+              "warning",
+            );
+
+            btnSubmit.classList.replace("bg-indigo-600", "bg-amber-500");
+            btnSubmit.classList.add("hover:bg-amber-600");
+            btnSubmit.querySelector("span").innerText =
+              "REPROCESSAR (IA OCUPADA)";
+
+            loading.classList.add("hidden");
+            btnSubmit.disabled = false;
+            btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+            return;
+          }
+
+          const data = await response.json();
+
+          if (data.erro) {
+            showToast(data.erro, "error");
+          } else {
+            showResult(data);
+            showToast("Análise concluída com sucesso!");
+          }
+        } catch (error) {
+          showToast("Erro de conexão com o servidor.", "error");
+        } finally {
+          loading.classList.add("hidden");
+          btnSubmit.disabled = false;
+          btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+
+          if (!btnSubmit.querySelector("span").innerText.includes("OCUPADA")) {
+            btnSubmit.querySelector("span").innerText = "PROCESSAR AGORA";
+          }
+        }
+      };
+
+      function showResult(data) {
+        const resultCard = document.getElementById("resultCard");
+        const label = document.getElementById("labelCategoria");
+        const resposta = document.getElementById("respostaSugestao");
+        const badgeEstagio = document.getElementById("badgeEstagio");
+        const badgeAcao = document.getElementById("badgeAcao");
+
+        resultCard.classList.remove("hidden");
+
+        resposta.innerText = data.resposta_automatica || "Sem resposta gerada.";
+        badgeEstagio.innerText = (data.estagio || "N/A").toUpperCase();
+        badgeAcao.innerText = (data.acao || "N/A")
+          .replace("_", " ")
+          .toUpperCase();
+
+        if (data.classificacao === "Produtivo") {
+          label.className =
+            "px-4 py-1 rounded-full text-sm font-bold uppercase bg-green-100 text-green-700 border border-green-200";
+          label.innerText = "✓ PRODUTIVO";
+        } else {
+          label.className =
+            "px-4 py-1 rounded-full text-sm font-bold uppercase bg-amber-100 text-amber-700 border border-amber-200";
+          label.innerText = "⚡ IMPRODUTIVO";
+        }
+      }
+
+      function copyResponse() {
+        const text = document.getElementById("respostaSugestao").innerText;
+        navigator.clipboard.writeText(text);
+        showToast("Resposta copiada para o dashboard!");
+      }
+    </script>
+  </body>
+</html>

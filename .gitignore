@@ -1,0 +1,81 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+config.py
+app/config.py
+
+# =========================
+# Model artifacts
+# =========================
+*.joblib
+*.pkl
+model/
+models/
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# =========================
+# FastAPI / Uvicorn
+# =========================
+*.sqlite3
+*.db
+uvicorn.log
+
+# =========================
+# Uploads / temp files
+# =========================
+uploads/
+tmp/
+temp/
+
+# =========================
+# PDFs / test files
+# =========================
+*.pdf
+*.txt
+
+# =========================
+# Frontend build (se houver)
+# =========================
+node_modules/
+dist/
+build/
