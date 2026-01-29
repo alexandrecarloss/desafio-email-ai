@@ -21,7 +21,6 @@ ENV/
 # Environment variables
 # =========================
 .env
-.env.*
 config.py
 app/config.py
 

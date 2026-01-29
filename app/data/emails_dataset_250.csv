@@ -1,0 +1,257 @@
+text;label
+Gostaria de abrir uma nova solicitação para atualização dos meus dados;nova solicitacao
+Preciso registrar um pedido de alteração no cadastro;nova solicitacao
+Quero solicitar um novo cartão de crédito;nova solicitacao
+Desejo abrir um chamado para suporte técnico;nova solicitacao
+Preciso iniciar uma solicitação referente a cobrança indevida;nova solicitacao
+Gostaria de solicitar aumento de limite;nova solicitacao
+Quero abrir uma solicitação para renegociar minha dívida;nova solicitacao
+Preciso de suporte para abrir um novo pedido;nova solicitacao
+Solicito abertura de chamado para problema no aplicativo;nova solicitacao
+Desejo registrar uma nova solicitação no sistema;nova solicitacao
+Quero abrir uma solicitação sobre erro no login;nova solicitacao
+Solicito abertura de atendimento para falha no sistema;nova solicitacao
+Preciso abrir uma solicitação de cancelamento;nova solicitacao
+Gostaria de iniciar um pedido de revisão de cobrança;nova solicitacao
+Quero registrar uma nova demanda;nova solicitacao
+Solicitação de novo atendimento;nova solicitacao
+Abrir chamado para problema técnico;nova solicitacao
+Pedido de abertura de solicitação;nova solicitacao
+Solicito atendimento para erro de pagamento;nova solicitacao
+Quero iniciar uma solicitação de suporte;nova solicitacao
+Desejo abrir nova solicitação referente a contrato;nova solicitacao
+Solicitação para atualização cadastral;nova solicitacao
+Pedido de abertura de chamado financeiro;nova solicitacao
+Abrir solicitação para revisão de fatura;nova solicitacao
+Quero solicitar suporte técnico;nova solicitacao
+Solicitação de novo protocolo;nova solicitacao
+Abrir atendimento para problema de acesso;nova solicitacao
+Solicito ajuda para abrir solicitação;nova solicitacao
+Nova solicitação de atendimento;nova solicitacao
+Registro de solicitação inicial;nova solicitacao
+Gostaria de abrir chamado para erro no app;nova solicitacao
+Pedido inicial de atendimento;nova solicitacao
+Solicitação para análise de débito;nova solicitacao
+Abrir solicitação para correção de dados;nova solicitacao
+Iniciar atendimento para problema financeiro;nova solicitacao
+Solicitação para desbloqueio de conta;nova solicitacao
+Pedido de abertura de chamado técnico;nova solicitacao
+Nova solicitação para revisão contratual;nova solicitacao
+Solicitação inicial de suporte;nova solicitacao
+Abertura de novo chamado;nova solicitacao
+
+Segue resposta referente à solicitação aberta anteriormente;resposta a solicitacao existente
+Estou retornando sobre o chamado número 4587;resposta a solicitacao existente
+Conforme solicitado, segue meu retorno sobre o pedido;resposta a solicitacao existente
+Em resposta à solicitação em andamento;resposta a solicitacao existente
+Gostaria de dar continuidade ao atendimento já iniciado;resposta a solicitacao existente
+Respondendo ao chamado aberto na semana passada;resposta a solicitacao existente
+Segue atualização sobre a solicitação existente;resposta a solicitacao existente
+Retorno conforme contato anterior;resposta a solicitacao existente
+Em relação ao protocolo informado;resposta a solicitacao existente
+Complementando a solicitação anterior;resposta a solicitacao existente
+Segue retorno solicitado;resposta a solicitacao existente
+Atualização do chamado em aberto;resposta a solicitacao existente
+Respondendo conforme solicitado;resposta a solicitacao existente
+Dando continuidade ao atendimento;resposta a solicitacao existente
+Retorno referente ao chamado;resposta a solicitacao existente
+Resposta ao protocolo informado;resposta a solicitacao existente
+Encaminho resposta sobre solicitação;resposta a solicitacao existente
+Segue retorno complementar;resposta a solicitacao existente
+Retornando conforme contato;resposta a solicitacao existente
+Resposta sobre solicitação anterior;resposta a solicitacao existente
+Atualizando solicitação em andamento;resposta a solicitacao existente
+Segue resposta solicitada;resposta a solicitacao existente
+Complemento do atendimento;resposta a solicitacao existente
+Retorno ao chamado em aberto;resposta a solicitacao existente
+Resposta adicional ao protocolo;resposta a solicitacao existente
+Encaminho retorno do atendimento;resposta a solicitacao existente
+Atualização conforme solicitado;resposta a solicitacao existente
+Retornando solicitação existente;resposta a solicitacao existente
+Resposta ao atendimento iniciado;resposta a solicitacao existente
+Complementando informações solicitadas;resposta a solicitacao existente
+Resposta ao chamado técnico;resposta a solicitacao existente
+Retorno referente ao atendimento;resposta a solicitacao existente
+Atualização do protocolo;resposta a solicitacao existente
+Resposta conforme contato anterior;resposta a solicitacao existente
+Encaminho resposta ao chamado;resposta a solicitacao existente
+Retorno do atendimento em curso;resposta a solicitacao existente
+Resposta solicitada anteriormente;resposta a solicitacao existente
+Complemento de informações;resposta a solicitacao existente
+Atualização do atendimento em aberto;resposta a solicitacao existente
+Resposta final ao chamado;resposta a solicitacao existente
+
+Estou enviando em anexo os documentos solicitados;envio de documento
+Segue o arquivo com os comprovantes;envio de documento
+Encaminho os documentos necessários para análise;envio de documento
+Anexo segue o PDF solicitado;envio de documento
+Estou enviando os documentos para validação;envio de documento
+Segue documentação complementar;envio de documento
+Encaminho os arquivos conforme solicitado;envio de documento
+Segue em anexo a documentação completa;envio de documento
+Envio documento de identificação conforme pedido;envio de documento
+Segue comprovante em anexo;envio de documento
+Encaminho documentos solicitados;envio de documento
+Segue documentação em PDF;envio de documento
+Envio arquivos solicitados;envio de documento
+Anexo documentos necessários;envio de documento
+Segue documentação adicional;envio de documento
+Encaminho comprovantes solicitados;envio de documento
+Envio documentos para conferência;envio de documento
+Segue arquivos anexos;envio de documento
+Encaminho documentação requerida;envio de documento
+Envio comprovante solicitado;envio de documento
+Segue anexo conforme pedido;envio de documento
+Documentos anexados para análise;envio de documento
+Envio documentação completa;envio de documento
+Segue arquivos para validação;envio de documento
+Encaminho documentos em anexo;envio de documento
+Envio PDF conforme solicitado;envio de documento
+Segue comprovantes anexos;envio de documento
+Encaminho arquivos solicitados anteriormente;envio de documento
+Envio documentação solicitada;envio de documento
+Segue documentos anexados;envio de documento
+Encaminho anexos conforme pedido;envio de documento
+Envio arquivos para análise;envio de documento
+Segue documentos complementares;envio de documento
+Encaminho comprovantes em anexo;envio de documento
+Envio documentação adicional;envio de documento
+
+Obrigado pelo atendimento;confirmacao ou agradecimento
+Agradeço o retorno e a atenção;confirmacao ou agradecimento
+Tudo certo, muito obrigado;confirmacao ou agradecimento
+Obrigado pela ajuda;confirmacao ou agradecimento
+Agradeço pela resolução do problema;confirmacao ou agradecimento
+Perfeito, agradeço o suporte;confirmacao ou agradecimento
+Muito obrigado pela resposta;confirmacao ou agradecimento
+Agradeço a confirmação;confirmacao ou agradecimento
+Obrigado, ficou claro agora;confirmacao ou agradecimento
+Agradeço o esclarecimento;confirmacao ou agradecimento
+Obrigado pela atenção;confirmacao ou agradecimento
+Agradeço o atendimento prestado;confirmacao ou agradecimento
+Muito obrigado pelo suporte;confirmacao ou agradecimento
+Agradeço a ajuda recebida;confirmacao ou agradecimento
+Obrigado pela rapidez;confirmacao ou agradecimento
+Agradeço o retorno rápido;confirmacao ou agradecimento
+Obrigado pela solução apresentada;confirmacao ou agradecimento
+Agradeço a resolução;confirmacao ou agradecimento
+Obrigado pelo suporte técnico;confirmacao ou agradecimento
+Agradeço o esclarecimento prestado;confirmacao ou agradecimento
+Muito obrigado pelo atendimento;confirmacao ou agradecimento
+Agradeço a resposta enviada;confirmacao ou agradecimento
+Obrigado pela orientação;confirmacao ou agradecimento
+Agradeço o auxílio;confirmacao ou agradecimento
+Obrigado pela confirmação;confirmacao ou agradecimento
+Agradeço a informação;confirmacao ou agradecimento
+Obrigado pela explicação;confirmacao ou agradecimento
+Agradeço o suporte recebido;confirmacao ou agradecimento
+Obrigado pela ajuda prestada;confirmacao ou agradecimento
+Agradeço o retorno enviado;confirmacao ou agradecimento
+Obrigado pelo esclarecimento;confirmacao ou agradecimento
+Agradeço a atenção dispensada;confirmacao ou agradecimento
+Obrigado pelo atendimento rápido;confirmacao ou agradecimento
+Agradeço a solução encontrada;confirmacao ou agradecimento
+Obrigado pela assistência;confirmacao ou agradecimento
+
+Tenho uma dúvida sobre minha fatura;duvida ou pergunta
+Gostaria de saber o prazo de resposta;duvida ou pergunta
+Poderiam me informar como funciona o cancelamento?;duvida ou pergunta
+Qual o status da minha solicitação?;duvida ou pergunta
+Tenho uma pergunta sobre taxas aplicadas;duvida ou pergunta
+Como posso atualizar meus dados?;duvida ou pergunta
+Existe algum prazo para retorno?;duvida ou pergunta
+Quais documentos são necessários?;duvida ou pergunta
+Gostaria de entender melhor o processo;duvida ou pergunta
+Como faço para acompanhar o chamado?;duvida ou pergunta
+Tenho dúvidas sobre o contrato;duvida ou pergunta
+Qual o valor da tarifa?;duvida ou pergunta
+Como funciona a cobrança?;duvida ou pergunta
+Gostaria de saber como proceder;duvida ou pergunta
+Existe previsão de resposta?;duvida ou pergunta
+Quais são os próximos passos?;duvida ou pergunta
+Como funciona o atendimento?;duvida ou pergunta
+Qual o prazo médio?;duvida ou pergunta
+Tenho uma pergunta sobre o sistema;duvida ou pergunta
+Como faço para resolver isso?;duvida ou pergunta
+Existe algum custo?;duvida ou pergunta
+Como posso acompanhar o status?;duvida ou pergunta
+Quais informações são necessárias?;duvida ou pergunta
+Gostaria de esclarecimentos;duvida ou pergunta
+Como funciona esse processo?;duvida ou pergunta
+Qual o procedimento correto?;duvida ou pergunta
+Tenho dúvidas sobre o atendimento;duvida ou pergunta
+Como funciona a análise?;duvida ou pergunta
+Existe previsão?;duvida ou pergunta
+Qual o tempo de retorno?;duvida ou pergunta
+Como proceder nesse caso?;duvida ou pergunta
+Tenho dúvidas sobre o pagamento;duvida ou pergunta
+Gostaria de mais informações;duvida ou pergunta
+Como funciona o sistema?;duvida ou pergunta
+Existe algum prazo definido?;duvida ou pergunta
+Qual o próximo passo?;duvida ou pergunta
+Tenho dúvidas gerais;duvida ou pergunta
+Como posso resolver?;duvida ou pergunta
+Existe suporte disponível?;duvida ou pergunta
+Qual o status atual?;duvida ou pergunta
+
+Bom dia, tudo bem?;mensagem social
+Olá, espero que estejam bem;mensagem social
+Boa tarde, apenas entrando em contato;mensagem social
+Oi, tudo certo por aí?;mensagem social
+Apenas passando para cumprimentar;mensagem social
+Boa noite;mensagem social
+Olá pessoal;mensagem social
+Oi;mensagem social
+Tudo bem?;mensagem social
+Bom dia;mensagem social
+Boa tarde;mensagem social
+Olá;mensagem social
+Oi tudo bem?;mensagem social
+Espero que esteja tudo bem;mensagem social
+Boa noite a todos;mensagem social
+Olá, bom dia;mensagem social
+Oi pessoal;mensagem social
+Tudo tranquilo?;mensagem social
+Apenas um oi;mensagem social
+Saudações;mensagem social
+Bom dia a equipe;mensagem social
+Boa tarde pessoal;mensagem social
+Olá novamente;mensagem social
+Oi novamente;mensagem social
+Tudo certo?;mensagem social
+Bom dia novamente;mensagem social
+Boa noite pessoal;mensagem social
+Oi equipe;mensagem social
+Olá a todos;mensagem social
+Bom dia pessoal;mensagem social
+
+Ganhe dinheiro rápido trabalhando de casa;marketing ou spam
+Oferta imperdível de investimento;marketing ou spam
+Clique aqui para ganhar prêmios;marketing ou spam
+Promoção exclusiva por tempo limitado;marketing ou spam
+Você foi selecionado para uma oferta especial;marketing ou spam
+Invista agora e dobre seu dinheiro;marketing ou spam
+Confira nossa nova promoção;marketing ou spam
+Não perca essa oportunidade única;marketing ou spam
+Oferta especial para você;marketing ou spam
+Aumente sua renda agora;marketing ou spam
+Ganhos garantidos sem esforço;marketing ou spam
+Trabalhe poucas horas e ganhe muito;marketing ou spam
+Oferta exclusiva para investidores;marketing ou spam
+Clique e saiba mais;marketing ou spam
+Promoção válida hoje;marketing ou spam
+Ganhe bônus imediato;marketing ou spam
+Oferta limitada;marketing ou spam
+Aumente seus lucros agora;marketing ou spam
+Não perca essa chance;marketing ou spam
+Promoção imperdível;marketing ou spam
+Ganhe renda extra hoje;marketing ou spam
+Invista com retorno garantido;marketing ou spam
+Oferta especial de crédito;marketing ou spam
+Clique para ganhar;marketing ou spam
+Ganhos rápidos e fáceis;marketing ou spam
+Promoção exclusiva para você;marketing ou spam
+Oferta por tempo limitado;marketing ou spam
+Ganhe dinheiro sem sair de casa;marketing ou spam
+Aumente sua renda facilmente;marketing ou spam
+Oferta especial hoje;marketing ou spam

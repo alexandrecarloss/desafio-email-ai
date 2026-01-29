@@ -1,27 +1,31 @@
 from app.config import GEMINI_API_KEY
 from google import genai
+import logging
+
+logger = logging.getLogger(__name__)
+
+MODELS_PRIORITY = [
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-3-flash-preview"
+]
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-def generate_text(prompt: str) -> str:
-    response = client.models.generate_content(
-        # model="gemini-3-flash-preview", 
-        model="gemini-2.5-flash", 
-        # model="gemini-2.5-flash-lite", 
-        contents=prompt
-    )
-    return response.text.strip()
+def generate_text_with_fallback(prompt: str) -> str:
+    last_error = None
 
-def classify_zero_shot(text: str, labels: list) -> str:
-    prompt = f"""
-    Classifique o texto abaixo em APENAS UMA das seguintes categorias: {labels}
+    for model in MODELS_PRIORITY:
+        try:
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt
+            )
+            logger.info(f"Modelo usado: {model}")
+            return response.text.strip()
+        except Exception as e:
+            logger.warning(f"Falha no modelo {model}: {e}")
+            last_error = e
 
-    REGRAS:
-    - Responda apenas com o nome da categoria, exatamente como escrita acima.
-    - Não use pontuação ou palavras extras.
-
-    TEXTO:
-    {text}
-    """
-    return generate_text(prompt)
+    raise RuntimeError(f"Todos os modelos falharam: {last_error}")
 
