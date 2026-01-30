@@ -1,5 +1,16 @@
 # SmartMail AI
 
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-ML-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![NLTK](https://img.shields.io/badge/NLTK-NLP-154F5B?style=for-the-badge)
+![Google Gemini](https://img.shields.io/badge/Google%20Gemini-LLM-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Pydantic](https://img.shields.io/badge/Pydantic-Validation-E92063?style=for-the-badge)
+![Joblib](https://img.shields.io/badge/Joblib-Model%20Persistence-6D6D6D?style=for-the-badge)
+![Uvicorn](https://img.shields.io/badge/Uvicorn-ASGI-2C2C2C?style=for-the-badge)
+![Jinja2](https://img.shields.io/badge/Jinja2-Templates-B41717?style=for-the-badge&logo=jinja&logoColor=white)
+![PDFPlumber](https://img.shields.io/badge/PDFPlumber-PDF%20Parsing-4B8BBE?style=for-the-badge)
+
 Este projeto consiste em uma API inteligente para triagem e automação de emails corporativos. 
 A solução combina Machine Learning (ML) estatístico local com Modelos de Linguagem de Grande Escala (LLM - Gemini) para classificação, decisão de fluxo e geração de respostas automáticas.
 
