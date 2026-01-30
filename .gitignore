@@ -70,11 +70,3 @@ temp/
 # PDFs / test files
 # =========================
 *.pdf
-*.txt
-
-# =========================
-# Frontend build (se houver)
-# =========================
-node_modules/
-dist/
-build/
