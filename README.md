@@ -20,6 +20,9 @@ A arquitetura foi projetada para oferecer alta performance, baixo custo operacio
 2. LLM Gemini: Atua como camada de validação semântica ou fallback para casos de baixa confiança.
 3. Decision Engine: Motor determinístico que define as ações do sistema com base nas classificações.
 
+## Demo
+![Tela do SmartMail AI](media/tela-SmartMailAI.png)
+
 ## Objetivo do Sistema
 
 Classificar emails automaticamente e extrair os seguintes metadados:
