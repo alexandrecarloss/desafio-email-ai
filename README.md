@@ -10,6 +10,8 @@
 ![Uvicorn](https://img.shields.io/badge/Uvicorn-ASGI-2C2C2C?style=for-the-badge)
 ![Jinja2](https://img.shields.io/badge/Jinja2-Templates-B41717?style=for-the-badge&logo=jinja&logoColor=white)
 ![PDFPlumber](https://img.shields.io/badge/PDFPlumber-PDF%20Parsing-4B8BBE?style=for-the-badge)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 Este projeto consiste em uma API inteligente para triagem e automação de emails corporativos. 
 A solução combina Machine Learning (ML) estatístico local com Modelos de Linguagem de Grande Escala (LLM - Gemini) para classificação, decisão de fluxo e geração de respostas automáticas.
@@ -19,6 +21,9 @@ A arquitetura foi projetada para oferecer alta performance, baixo custo operacio
 1. ML estatístico (TF-IDF + Naive Bayes): Responsável pela classificação rápida e local.
 2. LLM Gemini: Atua como camada de validação semântica ou fallback para casos de baixa confiança.
 3. Decision Engine: Motor determinístico que define as ações do sistema com base nas classificações.
+
+## Demo
+![Tela do SmartMail AI](media/tela-SmartMailAI.png)
 
 ## Objetivo do Sistema
 
@@ -66,6 +71,11 @@ Backend:
 - FastAPI
 - Pydantic
 - Uvicorn
+
+Frontend:
+- HTML5 / Tailwind CSS
+- JavaScript Moderno (ES6+)
+- Jinja2 Templates
 
 Machine Learning & NLP:
 - scikit-learn: TF-IDF (1–3 grams) e Multinomial Naive Bayes.
@@ -159,6 +169,22 @@ JSON{
   "resposta_automatica": "Recebemos sua solicitação e ela já está em análise por nossa equipe técnica."
 }
 ```
+
+## Interface do Usuário (Frontend)
+O projeto inclui uma interface web moderna e responsiva, construída para facilitar o uso da API por equipes de atendimento.
+
+### Tecnologias Utilizadas
+- Jinja2: Engine de templates para renderização dinâmica no FastAPI.
+- Tailwind CSS: Framework utilitário para um design responsivo e minimalista.
+- Font Awesome: Iconografia intuitiva para facilitar a navegação.
+- JavaScript (Vanilla): Manipulação de DOM, chamadas assíncronas (Fetch API) e gestão de estados de UI.
+
+### Funcionalidades da Interface
+- Upload Híbrido: Suporta entrada via texto direto ou upload de arquivos (.pdf, .txt) com funcionalidade de drag-and-drop.
+- Feedback Visual em Tempo Real: Toasts de notificação para sucessos, erros e avisos de limite de cota (Rate Limit).
+- Análise Visual de Metadados: Exibição clara de badges de classificação (Produtivo/Improdutivo), estágio do chamado e ação recomendada.
+- Sistema de Cópia Rápida: Botão para copiar a sugestão de resposta gerada pela IA diretamente para a área de transferência.
+- Estado de Carregamento: Feedback visual durante o processamento pesado de redes neurais.
 
 ## Estratégias de Robustez
 
