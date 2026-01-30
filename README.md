@@ -33,6 +33,23 @@ Classificar emails automaticamente e extrair os seguintes metadados:
 ## Pipeline de Inteligência
 
 O fluxo de processamento segue a lógica abaixo:
+![Fluxograma do projeto: Email Input<br>
+  ↓<br>
+Feature Extractor (Regex & Metadata)<br>
+  ↓<br>
+Intent Predictor (Naive Bayes Local)<br>
+  ↓<br>
+┌──────────────────────────────────────────┐<br>
+│ Confiança >= 0.75?                       │<br>
+├────────────────────┬─────────────────────┤<br>
+│        SIM         │         NÃO         │<br>
+│ analyze_email      │ analyze_email       │<br>
+│ (With Intent Hint) │ (Zero-shot Analysis)│<br>
+└────────────────────┴─────────────────────┘<br>
+  ↓<br>
+Decision Engine (Mapping Matrix)<br>
+  ↓<br>
+Final Response JSON<br>](media/fluxograma.png)
 
 ## Classificações Suportadas
 - nova solicitacao
