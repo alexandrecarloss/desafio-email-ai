@@ -13,11 +13,16 @@ DECISION_TABLE = {
 }
 
 def decide_action(intent: str, stage: str):
+    logger.debug(f"Decidindo ação para Intent={intent} e Stage={stage}")
     action = DECISION_TABLE.get((intent, stage))
+    
     if not action:
         if intent in ["mensagem social", "marketing ou spam"]:
+            logger.info(f"Ação padrão para categoria improdutiva: {intent} -> arquivar")
             return "arquivar"
             
-        logger.warning(f"Combinação não mapeada: {intent} | {stage}")
+        logger.warning(f"Combinação não mapeada na DECISION_TABLE: {intent} | {stage}")
         return "resposta_padrao"
+    
+    logger.info(f"Ação decidida: {action}")
     return action
