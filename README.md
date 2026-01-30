@@ -10,6 +10,8 @@
 ![Uvicorn](https://img.shields.io/badge/Uvicorn-ASGI-2C2C2C?style=for-the-badge)
 ![Jinja2](https://img.shields.io/badge/Jinja2-Templates-B41717?style=for-the-badge&logo=jinja&logoColor=white)
 ![PDFPlumber](https://img.shields.io/badge/PDFPlumber-PDF%20Parsing-4B8BBE?style=for-the-badge)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 Este projeto consiste em uma API inteligente para triagem e automação de emails corporativos. 
 A solução combina Machine Learning (ML) estatístico local com Modelos de Linguagem de Grande Escala (LLM - Gemini) para classificação, decisão de fluxo e geração de respostas automáticas.
