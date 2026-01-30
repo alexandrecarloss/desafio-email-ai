@@ -70,6 +70,11 @@ Backend:
 - Pydantic
 - Uvicorn
 
+Frontend:
+- HTML5 / Tailwind CSS
+- JavaScript Moderno (ES6+)
+- Jinja2 Templates
+
 Machine Learning & NLP:
 - scikit-learn: TF-IDF (1–3 grams) e Multinomial Naive Bayes.
 - NLTK: Processamento de stopwords em Português (PT-BR).
@@ -162,6 +167,22 @@ JSON{
   "resposta_automatica": "Recebemos sua solicitação e ela já está em análise por nossa equipe técnica."
 }
 ```
+
+## Interface do Usuário (Frontend)
+O projeto inclui uma interface web moderna e responsiva, construída para facilitar o uso da API por equipes de atendimento.
+
+### Tecnologias Utilizadas
+- Jinja2: Engine de templates para renderização dinâmica no FastAPI.
+- Tailwind CSS: Framework utilitário para um design responsivo e minimalista.
+- Font Awesome: Iconografia intuitiva para facilitar a navegação.
+- JavaScript (Vanilla): Manipulação de DOM, chamadas assíncronas (Fetch API) e gestão de estados de UI.
+
+### Funcionalidades da Interface
+- Upload Híbrido: Suporta entrada via texto direto ou upload de arquivos (.pdf, .txt) com funcionalidade de drag-and-drop.
+- Feedback Visual em Tempo Real: Toasts de notificação para sucessos, erros e avisos de limite de cota (Rate Limit).
+- Análise Visual de Metadados: Exibição clara de badges de classificação (Produtivo/Improdutivo), estágio do chamado e ação recomendada.
+- Sistema de Cópia Rápida: Botão para copiar a sugestão de resposta gerada pela IA diretamente para a área de transferência.
+- Estado de Carregamento: Feedback visual durante o processamento pesado de redes neurais.
 
 ## Estratégias de Robustez
 
