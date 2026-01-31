@@ -67,9 +67,6 @@ def process_email(text: str):
         
         final_action = decide_action(result["intent"], result["stage"])
         result["action"] = final_action
-        
-        if result["classificacao"] == "Improdutivo":
-            result["resposta_automatica"] = ""
 
         logger.info(
             f"Resultado final: Intent={result.get('intent')} | Action={result.get('action')}"

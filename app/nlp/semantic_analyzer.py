@@ -14,6 +14,42 @@ LABELS = [
     "marketing ou spam"
 ]
 
+TERMINAL_INTENTS = {
+    "mensagem social",
+    "confirmacao ou agradecimento"
+}
+
+DEFAULT_RESPONSES = {
+    "abrir_chamado": "Recebemos sua solicitação e abrimos um chamado. Nossa equipe retornará em breve.",
+    "atualizar_chamado": "Sua solicitação já está em andamento. Em breve enviaremos uma atualização do status.",
+    "anexar_documento": "Documento recebido com sucesso. Seguiremos com a análise.",
+    "analisar_suporte": "Estamos analisando sua solicitação. Retornaremos o mais breve possível.",
+    "arquivar": "Mensagem registrada. Nenhuma ação adicional é necessária no momento.",
+    "ignorar_ou_arquivar": "Mensagem recebida. Não é necessária nenhuma ação adicional.",
+    "resposta_padrao": "Recebemos sua mensagem e em breve retornaremos."
+}
+
+
+def ensure_response(result: dict) -> dict:
+    action = result.get("action")
+    if not result.get("resposta_automatica"):
+        result["resposta_automatica"] = DEFAULT_RESPONSES.get(
+            action,
+            "Recebemos sua mensagem."
+        )
+    return result
+
+
+def sanitize_llm_result(result: dict) -> dict:
+    if result.get("intent") in TERMINAL_INTENTS:
+        result["classificacao"] = "Improdutivo"
+        result["stage"] = "encerramento"
+        result["action"] = "ignorar_ou_arquivar"
+        result["resposta_automatica"] = ""
+
+    return ensure_response(result)
+
+
 def analyze_email(text: str) -> dict:
     logger.info("Executando analyze_email (Modo Completo)")
     prompt = f"""
@@ -26,8 +62,7 @@ REGRAS DE NEGÓCIO (OBRIGATÓRIAS):
   - action: ignorar_ou_arquivar
   - resposta_automatica: ""
 
-- Só gere resposta_automatica se action = resposta_padrao
-- Para emails improdutivos, resposta_automatica deve ser string vazia
+- Gere resposta apenas quando necessário.
 
 TAREFAS:
 1. Classifique o email em UMA das categorias abaixo:
@@ -72,7 +107,7 @@ EMAIL:
 """
     raw = generate_text_with_fallback(prompt)
     logger.debug(f"Resposta bruta Gemini (analyze_email): {raw}")
-    
+
     try:
         data = json.loads(raw)
         data = sanitize_llm_result(data)
@@ -85,7 +120,7 @@ EMAIL:
 def analyze_email_with_intent_hint(text: str, intent_hint: str) -> dict:
     logger.info(f"Executando analyze_email_with_intent_hint | Hint: {intent_hint}")
     prompt = f"""
-Você é um sistema de triagem de emails financeiros. 
+Você é um sistema de triagem de emails financeiros.
 
 REGRAS DE NEGÓCIO (OBRIGATÓRIAS):
 - Emails classificados como "mensagem social" ou "confirmacao ou agradecimento" são SEMPRE:
@@ -94,12 +129,9 @@ REGRAS DE NEGÓCIO (OBRIGATÓRIAS):
   - action: ignorar_ou_arquivar
   - resposta_automatica: ""
 
-- Só gere resposta_automatica se action = resposta_padrao
-- Para emails improdutivos, resposta_automatica deve ser string vazia
+- Gere resposta apenas quando necessário.
 
 Nossa inteligência local já classificou este email como: "{intent_hint}".
-
-Sua tarefa é validar essa classificação e extrair os metadados.
 
 FORMATO EXATO DE RETORNO (JSON APENAS):
 {{
@@ -115,7 +147,7 @@ EMAIL:
 """
     raw = generate_text_with_fallback(prompt)
     logger.debug(f"Resposta bruta Gemini (with_hint): {raw}")
-    
+
     try:
         data = json.loads(raw)
         data = sanitize_llm_result(data)
@@ -123,23 +155,10 @@ EMAIL:
         return data
     except Exception as e:
         logger.warning(f"Falha ao processar JSON com hint. Aplicando recuperação. Erro: {e}")
-        return {
+        return ensure_response({
             "intent": intent_hint,
             "classificacao": "Improdutivo",
             "stage": "encerramento",
             "action": "ignorar_ou_arquivar",
             "resposta_automatica": ""
-        }
-    
-TERMINAL_INTENTS = {
-    "mensagem social",
-    "confirmacao ou agradecimento"
-}
-
-def sanitize_llm_result(result: dict) -> dict:
-    if result.get("intent") in TERMINAL_INTENTS:
-        result["classificacao"] = "Improdutivo"
-        result["stage"] = "encerramento"
-        result["action"] = "ignorar_ou_arquivar"
-        result["resposta_automatica"] = ""
-    return result
+        })
