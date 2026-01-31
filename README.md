@@ -1,5 +1,25 @@
 # SmartMail AI
 
+<div align="center">
+<a href="https://desafio-email-ai.onrender.com/"
+  
+🚀 Acesse a Demo Ao Vivo<br>
+  
+</a>
+  
+[![Deploy](https://img.shields.io/badge/Deploy-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://desafio-email-ai.onrender.com/)
+
+</div>
+
+Este projeto consiste em uma API inteligente para triagem e automação de emails corporativos. 
+A solução combina Machine Learning (ML) estatístico local com Modelos de Linguagem de Grande Escala (LLM - Gemini) para classificação, decisão de fluxo e geração de respostas automáticas.
+
+A arquitetura foi projetada para oferecer alta performance, baixo custo operacional e robustez através de um pipeline híbrido:
+
+1. ML estatístico (TF-IDF + Naive Bayes): Responsável pela classificação rápida e local.
+2. LLM Gemini: Atua como camada de validação semântica ou fallback para casos de baixa confiança.
+3. Decision Engine: Motor determinístico que define as ações do sistema com base nas classificações.
+
 ![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-ML-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
@@ -13,17 +33,10 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-Este projeto consiste em uma API inteligente para triagem e automação de emails corporativos. 
-A solução combina Machine Learning (ML) estatístico local com Modelos de Linguagem de Grande Escala (LLM - Gemini) para classificação, decisão de fluxo e geração de respostas automáticas.
-
-A arquitetura foi projetada para oferecer alta performance, baixo custo operacional e robustez através de um pipeline híbrido:
-
-1. ML estatístico (TF-IDF + Naive Bayes): Responsável pela classificação rápida e local.
-2. LLM Gemini: Atua como camada de validação semântica ou fallback para casos de baixa confiança.
-3. Decision Engine: Motor determinístico que define as ações do sistema com base nas classificações.
-
 ## Demo
-![Tela do SmartMail AI](media/tela-SmartMailAI.png)
+<div align="center">
+  <img src="media/tela-SmartMailAI.png" alt="Tela do SmartMail AI" style="align: center; width: 800px; display: block; margin: 0 auto;">
+</div>
 
 ## Objetivo do Sistema
 
@@ -38,23 +51,9 @@ Classificar emails automaticamente e extrair os seguintes metadados:
 ## Pipeline de Inteligência
 
 O fluxo de processamento segue a lógica abaixo:
-![Fluxograma do projeto: Email Input<br>
-  ↓<br>
-Feature Extractor (Regex & Metadata)<br>
-  ↓<br>
-Intent Predictor (Naive Bayes Local)<br>
-  ↓<br>
-┌──────────────────────────────────────────┐<br>
-│ Confiança >= 0.75?                       │<br>
-├────────────────────┬─────────────────────┤<br>
-│        SIM         │         NÃO         │<br>
-│ analyze_email      │ analyze_email       │<br>
-│ (With Intent Hint) │ (Zero-shot Analysis)│<br>
-└────────────────────┴─────────────────────┘<br>
-  ↓<br>
-Decision Engine (Mapping Matrix)<br>
-  ↓<br>
-Final Response JSON<br>](media/fluxograma.png)
+<div align="center">
+  <img src="media/fluxograma.png" alt="Imagem do fluxograma do input a response" style="align: center; height: 500px; display: block; margin: 0 auto;">
+</div>
 
 ## Classificações Suportadas
 - nova solicitacao
@@ -199,6 +198,3 @@ O projeto segue a premissa de "ML quando possível, LLM quando necessário". Iss
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
