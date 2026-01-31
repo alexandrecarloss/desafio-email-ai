@@ -52,7 +52,7 @@ Classificar emails automaticamente e extrair os seguintes metadados:
 
 O fluxo de processamento segue a lógica abaixo:
 <div align="center">
-  <img src="media/fluxograma.png" alt="Imagem do fluxograma do input a response" style="align: center; height: 500px; display: block; margin: 0 auto;">
+  <img src="media/fluxograma.png" alt="Imagem do fluxograma do input a response" style="align: center; height: 800px; display: block; margin: 0 auto;">
 </div>
 
 ## Treinamento e Ajuste 
