@@ -63,8 +63,3 @@ uvicorn.log
 uploads/
 tmp/
 temp/
-
-# =========================
-# PDFs / test files
-# =========================
-*.pdf
