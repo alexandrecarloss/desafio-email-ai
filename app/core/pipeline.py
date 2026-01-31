@@ -22,12 +22,19 @@ TERMINAL_INTENTS = {
     "mensagem social"
 }
 
-def is_terminal_message(features: dict) -> bool:
-    return (
-        features["has_thanks"]
-        and not features["has_question"]
-        and features["length"] < 300
-    )
+def is_terminal(intent: str, features: dict) -> bool:
+    if intent == "mensagem social":
+        return True
+
+    if intent == "confirmacao ou agradecimento":
+        return (
+            features["has_thanks"]
+            and not features["has_question"]
+            and features["length"] < 300
+        )
+
+    return False
+
 
 def process_email(text: str):
     logger.info(f"Iniciando processamento de email. Tamanho: {len(text)} caracteres")
@@ -40,8 +47,8 @@ def process_email(text: str):
     )
 
     try:
-        if intent in TERMINAL_INTENTS and is_terminal_message(features):
-            logger.info("Mensagem terminal detectada via regras determinísticas")
+        if is_terminal(intent, features):
+            logger.info("Mensagem terminal detectada (regra de negócio)")
 
             return {
                 "intent": intent,
@@ -63,6 +70,7 @@ def process_email(text: str):
         )
         return result
 
-    except Exception as e:
+    except Exception:
         logger.error("Erro crítico no processamento", exc_info=True)
         return fallback_response(intent)
+

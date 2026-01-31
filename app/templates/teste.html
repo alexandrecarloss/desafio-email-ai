@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Email Classifier | Finance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  </head>
+  <body class="bg-slate-50 font-sans min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm py-6 sticky top-0 z-50">
+      <div class="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <div class="bg-indigo-600 p-2 rounded-lg">
+            <i class="fas fa-robot text-white text-xl"></i>
+          </div>
+          <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight">
+            SmartMail <span class="text-indigo-600">AI</span>
+          </h1>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="hidden sm:inline text-xs font-bold text-slate-400 uppercase tracking-widest border-r pr-4">Finance Engine v1.0</span>
+          <div class="flex items-center gap-2 text-green-500 text-sm font-medium">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            IA Online
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="toastContainer" class="fixed top-5 right-5 z-[100] flex flex-col gap-3"></div>
+
+    <main class="container mx-auto px-4 py-8 flex-grow max-w-6xl">
+      <section class="mb-10 text-center md:text-left">
+        <h2 class="text-3xl font-bold text-slate-800 mb-2">Automação de Triagem Financeira</h2>
+        <p class="text-slate-500 max-w-2xl text-lg">
+          Classifique requisições e gere respostas instantâneas com precisão bancária.
+        </p>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-6">
+          <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 relative">
+            
+            <button onclick="clearAllFields()" class="absolute top-8 right-8 text-slate-400 hover:text-red-500 transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+                <i class="fas fa-trash-alt"></i> Limpar Tudo
+            </button>
+
+            <h3 class="text-xl font-bold mb-6 text-slate-700 flex items-center gap-3">
+              <i class="fas fa-paper-plane text-indigo-500"></i> Analisar Novo E-mail
+            </h3>
+
+            <div class="mb-6">
+                <p class="text-[10px] font-bold text-slate-400 uppercase mb-3">Exemplos rápidos para teste:</p>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="setExample('produtivo')" class="text-xs bg-indigo-50 text-indigo-600 px-3 py-2 rounded-xl hover:bg-indigo-100 border border-indigo-100 transition-all font-medium">Solicitação de Suporte</button>
+                    <button onclick="setExample('anexo')" class="text-xs bg-indigo-50 text-indigo-600 px-3 py-2 rounded-xl hover:bg-indigo-100 border border-indigo-100 transition-all font-medium">Envio de Comprovante</button>
+                    <button onclick="setExample('improdutivo')" class="text-xs bg-slate-100 text-slate-600 px-3 py-2 rounded-xl hover:bg-slate-200 border border-slate-200 transition-all font-medium">Mensagem Social (Spam)</button>
+                </div>
+            </div>
+
+            <form id="emailForm" class="space-y-6">
+              <div class="group relative">
+                <label class="block text-sm font-semibold text-slate-600 mb-2 group-focus-within:text-indigo-600 transition-colors">Conteúdo da Mensagem</label>
+                <textarea
+                  id="emailText"
+                  rows="6"
+                  class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all text-slate-700 placeholder:text-slate-300"
+                  placeholder="Cole aqui o corpo do e-mail..."
+                ></textarea>
+                <div id="textOverlay" class="hidden absolute inset-0 bg-slate-50/80 rounded-2xl flex items-center justify-center backdrop-blur-[1px] z-10">
+                    <p class="text-xs font-bold text-slate-500"><i class="fas fa-lock mr-2"></i>Remova o arquivo para digitar</p>
+                </div>
+              </div>
+
+              <div id="dropZone" class="p-6 border-2 border-dashed border-slate-200 rounded-2xl hover:bg-slate-50 transition-all group relative">
+                <div id="fileOverlay" class="hidden absolute inset-0 bg-slate-50/80 rounded-2xl flex items-center justify-center backdrop-blur-[1px] z-10 text-center">
+                    <p class="text-xs font-bold text-slate-500 px-4"><i class="fas fa-lock mr-2"></i>Apague o texto acima para enviar um arquivo</p>
+                </div>
+
+                <label class="flex flex-col items-center cursor-pointer">
+                  <i class="fas fa-cloud-upload-alt text-3xl text-slate-300 group-hover:text-indigo-400 transition-colors mb-2"></i>
+                  <div id="fileStatusContainer" class="text-center">
+                    <span id="fileNameDisplay" class="text-sm font-medium text-slate-500">Ou arraste um arquivo .txt ou .pdf aqui</span>
+                  </div>
+                  <input type="file" id="emailFile" accept=".txt, .pdf" class="hidden" />
+                </label>
+                <button type="button" id="btnRemoveFile" class="hidden absolute top-2 right-2 bg-red-100 text-red-600 hover:bg-red-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors z-20">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+
+              <button type="submit" id="btnSubmit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-4 px-8 rounded-2xl transition-all shadow-lg shadow-indigo-200 flex items-center justify-center gap-3 transform hover:-translate-y-1 active:scale-95 disabled:opacity-50">
+                <span>PROCESSAR AGORA</span>
+                <i class="fas fa-bolt"></i>
+              </button>
+            </form>
+          </section>
+        </div>
+
+        <div class="space-y-6">
+          <section id="resultCard" class="bg-white p-8 rounded-3xl shadow-xl border-2 border-indigo-50 hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div class="flex justify-between items-start mb-6">
+              <h3 class="text-lg font-bold text-slate-800">Análise da IA</h3>
+              <span id="labelCategoria"></span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <div class="bg-slate-100 px-3 py-1 rounded-lg">
+                <span class="text-[9px] uppercase font-bold text-slate-400 block">Estágio</span>
+                <span id="badgeEstagio" class="text-xs font-bold text-slate-700">-</span>
+              </div>
+              <div class="bg-indigo-50 px-3 py-1 rounded-lg">
+                <span class="text-[9px] uppercase font-bold text-indigo-400 block">Ação</span>
+                <span id="badgeAcao" class="text-xs font-bold text-indigo-700">-</span>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <label class="text-[10px] font-bold text-slate-400 uppercase mb-2 block">Sugestão de Resposta</label>
+                <p id="respostaSugestao" class="text-slate-700 leading-relaxed italic text-sm"></p>
+              </div>
+              <button onclick="copyResponse()" class="w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl transition-colors flex items-center justify-center gap-2 text-xs">
+                <i class="far fa-copy"></i> COPIAR RESPOSTA
+              </button>
+            </div>
+          </section>
+
+          <div id="loading" class="hidden bg-white p-12 rounded-3xl border border-slate-100 shadow-sm text-center">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-600 border-t-transparent mb-4"></div>
+            <p class="text-slate-500 font-bold animate-pulse">Consultando Redes Neurais...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-100 py-8 border-t border-slate-200">
+      <div class="container mx-auto px-4 text-center text-slate-400 text-[10px] uppercase tracking-widest font-bold">
+        &copy; 2026 SmartMail AI Engine - Sistema Híbrido de Triagem
+      </div>
+    </footer>
+
+    <script>
+      const form = document.getElementById("emailForm");
+      const btnSubmit = document.getElementById("btnSubmit");
+      const loading = document.getElementById("loading");
+      const resultCard = document.getElementById("resultCard");
+      const fileInput = document.getElementById("emailFile");
+      const emailText = document.getElementById("emailText");
+      const fileNameDisplay = document.getElementById("fileNameDisplay");
+      const dropZone = document.getElementById("dropZone");
+      const btnRemoveFile = document.getElementById("btnRemoveFile");
+      const fileOverlay = document.getElementById("fileOverlay");
+      const textOverlay = document.getElementById("textOverlay");
+
+      const EXAMPLES = {
+        produtivo: "Olá, não estou conseguindo acessar minha conta no portal financeiro. Já tentei redefinir a senha mas o erro persiste. Podem me ajudar?",
+        anexo: "Segue em anexo o comprovante de pagamento referente à fatura de Janeiro/2026. Por favor, confirmem o recebimento.",
+        improdutivo: "Bom dia equipe! Passando apenas para desejar um ótimo Natal e um próspero ano novo a todos vocês!"
+      };
+
+      function setExample(type) {
+        clearAllFields();
+        emailText.value = EXAMPLES[type];
+        handleInputs();
+      }
+
+      function handleInputs() {
+        const hasText = emailText.value.trim().length > 0;
+        const hasFile = fileInput.files.length > 0;
+
+        // Se tem texto, bloqueia arquivo
+        if (hasText) {
+            fileOverlay.classList.remove("hidden");
+            dropZone.classList.add("opacity-50");
+        } else {
+            fileOverlay.classList.add("hidden");
+            dropZone.classList.remove("opacity-50");
+        }
+
+        // Se tem arquivo, bloqueia texto
+        if (hasFile) {
+            textOverlay.classList.remove("hidden");
+        } else {
+            textOverlay.classList.add("hidden");
+        }
+      }
+
+      emailText.addEventListener("input", handleInputs);
+      fileInput.onchange = () => {
+        if(fileInput.files[0]) {
+            fileNameDisplay.innerText = `Arquivo: ${fileInput.files[0].name}`;
+            fileNameDisplay.classList.add("text-indigo-600", "font-bold");
+            btnRemoveFile.classList.remove("hidden");
+            dropZone.classList.add("border-indigo-400", "bg-indigo-50");
+        }
+        handleInputs();
+      };
+
+      function clearAllFields() {
+        emailText.value = "";
+        fileInput.value = "";
+        fileNameDisplay.innerText = "Ou arraste um arquivo .txt ou .pdf aqui";
+        fileNameDisplay.classList.remove("text-indigo-600", "font-bold");
+        btnRemoveFile.classList.add("hidden");
+        dropZone.classList.remove("border-indigo-400", "bg-indigo-50", "opacity-50");
+        resultCard.classList.add("hidden");
+        handleInputs();
+      }
+
+      btnRemoveFile.onclick = (e) => {
+        e.preventDefault();
+        fileInput.value = "";
+        clearAllFields();
+      };
+
+      // Toast System
+      function showToast(message, type = "success") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        const bgColor = type === "success" ? "bg-green-600" : type === "error" ? "bg-red-600" : "bg-amber-500";
+        toast.className = `${bgColor} text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in slide-in-from-right-full duration-300 min-w-[300px]`;
+        toast.innerHTML = `<i class="fas fa-info-circle"></i><span class="font-medium">${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.classList.add("animate-out", "fade-out", "slide-out-to-right-full");
+          setTimeout(() => toast.remove(), 500);
+        }, 4000);
+      }
+
+      form.onsubmit = async (e) => {
+        e.preventDefault();
+        const text = emailText.value;
+        const file = fileInput.files[0];
+
+        if (!text && !file) {
+          showToast("Insira um texto ou anexe um arquivo.", "warning");
+          return;
+        }
+
+        btnSubmit.disabled = true;
+        btnSubmit.querySelector("span").innerText = "PROCESSANDO...";
+        loading.classList.remove("hidden");
+        resultCard.classList.add("hidden");
+
+        const formData = new FormData();
+        if (file) formData.append("arquivo", file);
+        if (text) formData.append("texto", text);
+
+        try {
+          const response = await fetch("/processar-email", { method: "POST", body: formData });
+          const data = await response.json();
+          
+          if (response.ok) {
+            showResult(data);
+            showToast("Análise concluída!");
+          } else {
+            showToast(data.erro || "Erro no processamento", "error");
+          }
+        } catch (error) {
+          showToast("Erro de conexão", "error");
+        } finally {
+          loading.classList.add("hidden");
+          btnSubmit.disabled = false;
+          btnSubmit.querySelector("span").innerText = "PROCESSAR AGORA";
+        }
+      };
+
+      function showResult(data) {
+        const label = document.getElementById("labelCategoria");
+        resultCard.classList.remove("hidden");
+        document.getElementById("respostaSugestao").innerText = data.resposta_automatica;
+        document.getElementById("badgeEstagio").innerText = data.estagio.toUpperCase();
+        document.getElementById("badgeAcao").innerText = data.acao.replace("_", " ").toUpperCase();
+
+        const isProdutivo = data.classificacao === "Produtivo";
+        label.className = `px-3 py-1 rounded-full text-[10px] font-black uppercase ${isProdutivo ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`;
+        label.innerText = isProdutivo ? "✓ Produtivo" : "⚡ Improdutivo";
+      }
+
+      function copyResponse() {
+        const text = document.getElementById("respostaSugestao").innerText;
+        navigator.clipboard.writeText(text);
+        showToast("Copiado!");
+      }
+
+      // Drag and Drop
+      ["dragenter", "dragover"].forEach(name => {
+        dropZone.addEventListener(name, () => {
+            if(!textOverlay.classList.contains("hidden")) return;
+            dropZone.classList.add("bg-indigo-100", "border-indigo-500");
+        });
+      });
+      ["dragleave", "drop"].forEach(name => {
+        dropZone.addEventListener(name, () => dropZone.classList.remove("bg-indigo-100", "border-indigo-500"));
+      });
+      dropZone.addEventListener("drop", (e) => {
+        if(emailText.value.length > 0) return;
+        fileInput.files = e.dataTransfer.files;
+        fileInput.onchange();
+      });
+    </script>
+  </body>
+</html>

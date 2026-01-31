@@ -19,6 +19,16 @@ def analyze_email(text: str) -> dict:
     prompt = f"""
 Você é um sistema de triagem de emails corporativos do setor financeiro.
 
+REGRAS DE NEGÓCIO (OBRIGATÓRIAS):
+- Emails classificados como "mensagem social" ou "confirmacao ou agradecimento" são SEMPRE:
+  - classificacao: Improdutivo
+  - stage: encerramento
+  - action: ignorar_ou_arquivar
+  - resposta_automatica: ""
+
+- Só gere resposta_automatica se action = resposta_padrao
+- Para emails improdutivos, resposta_automatica deve ser string vazia
+
 TAREFAS:
 1. Classifique o email em UMA das categorias abaixo:
 {LABELS}
@@ -65,6 +75,7 @@ EMAIL:
     
     try:
         data = json.loads(raw)
+        data = sanitize_llm_result(data)
         logger.info("JSON decodificado com sucesso em analyze_email")
         return data
     except Exception as e:
@@ -75,6 +86,17 @@ def analyze_email_with_intent_hint(text: str, intent_hint: str) -> dict:
     logger.info(f"Executando analyze_email_with_intent_hint | Hint: {intent_hint}")
     prompt = f"""
 Você é um sistema de triagem de emails financeiros. 
+
+REGRAS DE NEGÓCIO (OBRIGATÓRIAS):
+- Emails classificados como "mensagem social" ou "confirmacao ou agradecimento" são SEMPRE:
+  - classificacao: Improdutivo
+  - stage: encerramento
+  - action: ignorar_ou_arquivar
+  - resposta_automatica: ""
+
+- Só gere resposta_automatica se action = resposta_padrao
+- Para emails improdutivos, resposta_automatica deve ser string vazia
+
 Nossa inteligência local já classificou este email como: "{intent_hint}".
 
 Sua tarefa é validar essa classificação e extrair os metadados.
@@ -96,14 +118,28 @@ EMAIL:
     
     try:
         data = json.loads(raw)
+        data = sanitize_llm_result(data)
         logger.info("JSON decodificado com sucesso em analyze_email_with_intent_hint")
         return data
     except Exception as e:
         logger.warning(f"Falha ao processar JSON com hint. Aplicando recuperação. Erro: {e}")
         return {
             "intent": intent_hint,
-            "classificacao": "Produtivo",
-            "stage": "em_andamento",
-            "action": "resposta_padrao",
-            "resposta_automatica": "Recebemos sua mensagem sobre "
+            "classificacao": "Improdutivo",
+            "stage": "encerramento",
+            "action": "ignorar_ou_arquivar",
+            "resposta_automatica": ""
         }
+    
+TERMINAL_INTENTS = {
+    "mensagem social",
+    "confirmacao ou agradecimento"
+}
+
+def sanitize_llm_result(result: dict) -> dict:
+    if result.get("intent") in TERMINAL_INTENTS:
+        result["classificacao"] = "Improdutivo"
+        result["stage"] = "encerramento"
+        result["action"] = "ignorar_ou_arquivar"
+        result["resposta_automatica"] = ""
+    return result
