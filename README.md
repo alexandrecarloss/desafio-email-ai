@@ -55,6 +55,10 @@ O fluxo de processamento segue a lógica abaixo:
   <img src="media/fluxograma.png" alt="Imagem do fluxograma do input a response" style="align: center; height: 500px; display: block; margin: 0 auto;">
 </div>
 
+## Treinamento e Ajuste 
+
+O modelo local foi treinado com um dataset de 250 exemplos categorizados, utilizando Stopwords do NLTK para limpeza de ruído em português. Para a camada de LLM (Gemini), foi aplicado Prompt Engineering com instruções de Few-shot para garantir que o tom da resposta automática seja estritamente profissional e financeiro.
+
 ## Classificações Suportadas
 - nova solicitacao
 - resposta a solicitacao existente
