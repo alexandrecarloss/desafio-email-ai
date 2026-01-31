@@ -2,6 +2,7 @@ import logging
 from app.nlp.semantic_analyzer import analyze_email, analyze_email_with_intent_hint
 from app.nlp.feature_extractor import extract_features
 from app.ml.intent_predictor import predict_intent
+from app.core.decision_engine import decide_action
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +36,6 @@ def is_terminal(intent: str, features: dict) -> bool:
 
     return False
 
-
 def process_email(text: str):
     logger.info(f"Iniciando processamento de email. Tamanho: {len(text)} caracteres")
 
@@ -58,12 +58,18 @@ def process_email(text: str):
                 "resposta_automatica": ""
             }
 
-        if confidence >= 0.85:
+        if confidence >= 0.75:
             logger.info("Alta confiança ML — usando LLM com hint")
             result = analyze_email_with_intent_hint(text, intent)
         else:
             logger.info("Baixa confiança ML — usando LLM zero-shot")
             result = analyze_email(text)
+        
+        final_action = decide_action(result["intent"], result["stage"])
+        result["action"] = final_action
+        
+        if result["classificacao"] == "Improdutivo":
+            result["resposta_automatica"] = ""
 
         logger.info(
             f"Resultado final: Intent={result.get('intent')} | Action={result.get('action')}"
