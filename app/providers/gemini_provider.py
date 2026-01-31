@@ -1,4 +1,4 @@
-from app.config import GEMINI_API_KEY
+from ..config import GEMINI_API_KEY
 from google import genai
 import logging
 

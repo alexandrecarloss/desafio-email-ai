@@ -21,8 +21,6 @@ ENV/
 # Environment variables
 # =========================
 .env
-config.py
-app/config.py
 
 # =========================
 # Model artifacts
